@@ -1,5 +1,5 @@
 
-public abstract class Animal {
+public abstract class Animal implements IAnimal {
     private String name;
     private String food;
     private String medication;
