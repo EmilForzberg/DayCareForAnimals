@@ -8,21 +8,32 @@ public class FileHandler {
     public void saveOwners(List<Owner> owners) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) {
             for (Owner owner : owners) {
-                writer.write(owner.getName() + ";" + owner.getPhone());
-                writer.newLine();
-
-                for (Animal animal : owner.getAnimals()) {
-                    writer.write(animal.getClass().getSimpleName() + ";" +
-                            animal.getName() + ";" +
-                            animal.getFood() + ";" +
-                            animal.getMedication());
-                    writer.newLine();
-                }
-
-                writer.newLine();
+                writeOwner(writer, owner);
             }
         } catch (IOException e) {
-            System.out.println("Fel vid registrering av ägare: " + e.getMessage());
+            System.out.println("Fel vid sparning av ägare: " + e.getMessage());
+        }
+    }
+
+    private void writeOwner(BufferedWriter writer, Owner owner) throws IOException {
+        writer.write(owner.getName() + ";" + owner.getPhone());
+        writer.newLine();
+
+        for (Animal animal : owner.getAnimals()) {
+            writer.write(animal.getClass().getSimpleName() + ";" +
+                    animal.getName() + ";" +
+                    animal.getFood() + ";" +
+                    animal.getMedication());
+            writer.newLine();
+        }
+        writer.newLine(); // Tom rad mellan ägare
+    }
+
+    public void appendOwnerToFile(Owner owner) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true))) { // true för att lägga till
+            writeOwner(writer, owner);
+        } catch (IOException e) {
+            System.out.println("Fel vid sparning av ägare: " + e.getMessage());
         }
     }
 

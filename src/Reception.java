@@ -85,22 +85,44 @@ public class Reception {
     }
 
     private void registerOwner() {
+        System.out.print("Ange ägarens telefonnummer (eller skriv MENY för att återgå): ");
+        String phone = getInput();
+        if (returnToMenu) return;
+
+        // Kontrollera om telefonnumret redan finns
+        Owner existingOwner = ownerManager.findOwner(phone);
+        if (existingOwner != null) {
+            System.out.println("En ägare finns redan med detta telefonnummer.");
+            System.out.print("Vill du lägga till ett djur till ägaren istället? (ja/nej): ");
+            String response = getInput();
+            if (returnToMenu) return;
+
+            if (response.equalsIgnoreCase("ja")) {
+                animalManager.addAnimal(existingOwner); // Lägg till nytt djur
+                fileHandler.saveOwners(ownerManager.getAllOwners()); // Uppdatera filen
+                System.out.println("Djuret har registrerats till ägaren " + existingOwner.getName() + ".");
+            } else {
+                System.out.println("Återgår till huvudmenyn.");
+            }
+            return; // Avsluta metoden efter att ha hanterat detta fall
+        }
+
+        // Om telefonnumret inte finns, fortsätt med att registrera en ny ägare
         System.out.print("Ange ägarens namn (eller skriv MENY för att återgå): ");
         String name = getInput();
         if (returnToMenu) return;
 
-        System.out.print("Ange telefonnummer: ");
-        String phone = getInput();
-        if (returnToMenu) return;
+        Owner newOwner = new Owner(name, phone);
+        ownerManager.addOwner(newOwner);
+        fileHandler.appendOwnerToFile(newOwner); // Spara den nya ägaren direkt i filen
 
-        Owner owner = new Owner(name, phone);
-        ownerManager.addOwner(owner);
-        System.out.println("Ny ägare registrerad. Vill du lägga till ett djur? (ja/nej)");
+        System.out.println("Ny ägare registrerad. Vill du lägga till ett djur? (ja/nej): ");
         String response = getInput();
         if (returnToMenu) return;
 
         if (response.equalsIgnoreCase("ja")) {
-            animalManager.addAnimal(owner);
+            animalManager.addAnimal(newOwner);
+            fileHandler.saveOwners(ownerManager.getAllOwners()); // Uppdatera filen
         }
     }
 

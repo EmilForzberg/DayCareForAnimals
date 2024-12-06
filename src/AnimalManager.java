@@ -43,8 +43,6 @@ public class AnimalManager {
     public void addAnimal(Owner owner) {
         System.out.print("Ange djurets namn: ");
         String name = scanner.nextLine();
-        System.out.print("Ange djurets ålder: ");
-        int age = Integer.parseInt(scanner.nextLine());
         System.out.print("Ange matvanor: ");
         String food = scanner.nextLine();
         System.out.print("Ange medicin: ");
