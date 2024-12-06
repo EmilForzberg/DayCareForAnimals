@@ -1,5 +1,5 @@
 Emil Forsberg;0762093456
-Dog;Zelda;Ris;Ingen;false
+Dog;Zelda;Ris;Ingen;true
 
 Majken Alpsten;0705558888
 Dog;Mario;Hundfoder;Ingen;false
@@ -7,7 +7,7 @@ Dog;Mario;Hundfoder;Ingen;false
 Agens Alpsten;0708885555
 Dog;Luigi;Hundfoder;Ingen;false
 
-Matilda.;0761234567
+Matilda;0761234567
 Dog;Peach;Mycket hundfoder;Ingen;false
 
 Carolina;07012341234
