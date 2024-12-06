@@ -32,10 +32,18 @@ public class AnimalManager {
     }
 
     public void listAnimals(List<Owner> owners) {
-        System.out.println("\nVisa Djur");
         for (Owner owner : owners) {
             for (Animal animal : owner.getAnimals()) {
-                System.out.println("Ägare: " + owner.getName() + ", Djur: " + animal.getInfo());
+                String animalType = animal.getClass().getSimpleName();
+                System.out.println(
+
+                                "Ägare: " + owner.getName() +
+                                ", Telefon: " + owner.getPhone() +
+                                ", " + animalType +
+                                ", Namn: " + animal.getName() +
+                                ", Mat: " + animal.getFood() +
+                                ", Medicin: " + animal.getMedication()
+                );
             }
         }
     }

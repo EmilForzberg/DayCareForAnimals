@@ -26,11 +26,11 @@ public class FileHandler {
                     animal.getMedication());
             writer.newLine();
         }
-        writer.newLine(); // Tom rad mellan ägare
+        writer.newLine(); // Tom rad mellan ägare i (owners.txt).
     }
 
     public void appendOwnerToFile(Owner owner) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true))) { // true för att lägga till
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
             writeOwner(writer, owner);
         } catch (IOException e) {
             System.out.println("Fel vid sparning av ägare: " + e.getMessage());
@@ -40,6 +40,7 @@ public class FileHandler {
     public List<Owner> loadOwners() {
         List<Owner> owners = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
+            System.out.println("Läser in ägare från fil: " + FILE_NAME); // ENDAST FÖR DEBUG
             String line;
             Owner currentOwner = null;
 
@@ -51,14 +52,15 @@ public class FileHandler {
 
                 String[] parts = line.split(";");
                 if (parts.length == 2) {
+                    System.out.println("Laddar ägare: " + parts[0] + ", telefon: " + parts[1]); // ENDAST FÖR DEBUG
                     currentOwner = new Owner(parts[0], parts[1]);
                     owners.add(currentOwner);
-                } else if (parts.length == 5 && currentOwner != null) {
+                } else if (parts.length == 4 && currentOwner != null) {
+                    System.out.println("Hittade djur: " + parts[1] + " av typ: " + parts[0]); // ENDAST FÖR DEBUG
                     String type = parts[0];
                     String name = parts[1];
-                    int age = Integer.parseInt(parts[2]);
-                    String food = parts[3];
-                    String medication = parts[4];
+                    String food = parts[2];
+                    String medication = parts[3];
 
                     Animal animal;
                     switch (type.toLowerCase()) {
@@ -75,11 +77,12 @@ public class FileHandler {
                             System.out.println("Okänd djurtyp: " + type);
                             continue;
                     }
+                    System.out.println("Laddar djur: " + name + ", typ: " + type); // ENDAST FÖR DEBUG
                     currentOwner.addAnimal(animal);
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Ingen tidigare data hittades. En ny fil skapas vid registrering av ägare.");
+            System.out.println("Ingen tidigare data hittades. En ny fil skapas vid sparning.");
         } catch (IOException e) {
             System.out.println("Fel vid laddning av ägare: " + e.getMessage());
         }

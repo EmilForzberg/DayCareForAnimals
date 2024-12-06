@@ -25,6 +25,6 @@ public abstract class Animal {
     public abstract void makeSound();
 
     public String getInfo() {
-        return "Namn: " + name + ", Ålder: " + ", Mat: " + food + ", Medicin: " + medication;
+        return "Namn: " + name + ", Mat: " + food + ", Medicin: " + medication;
     }
 }

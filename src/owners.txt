@@ -1,5 +1,12 @@
 Emil Forsberg;0762093456
 Dog;Zelda;Ris;Ingen
-Cat;Stella;Frukt;Ingen
-Dog;Rex;Ris;Ingen
+Cat;Stella;Katfoder;Ingen
+Bird;Birdy;Solrosfrön;Ingen
+Bird;Madonna;Inga;Ingen
+
+Majken Alpsten;0705558888
+Dog;Texas;Hundfoder;Ingen
+
+Agens Alpsten;0708885555
+Dog;Rex;Hundfoder;Ingen
 
