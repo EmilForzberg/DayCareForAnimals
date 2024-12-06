@@ -1,4 +1,6 @@
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Reception {
     private static boolean returnToMenu = false; // Flagga för att återgå till huvudmenyn
@@ -8,8 +10,7 @@ public class Reception {
     private Scanner scanner = new Scanner(System.in); // Scanner
 
     public void start() {
-        // Ladda ägare från fil vid programstart
-        ownerManager.setOwners(fileHandler.loadOwners());
+        ownerManager.setOwners(fileHandler.loadOwners()); // Ladda ägare och incheckade djur
 
         while (true) {
             returnToMenu = false;
@@ -37,7 +38,6 @@ public class Reception {
             }
         }
     }
-
     private void displayMenu() {
         System.out.println("\nVälkommen till Djurdagiset!");
         System.out.println("1. Lämna djur");
@@ -127,8 +127,7 @@ public class Reception {
     }
 
     private void exitProgram() {
-        // Spara ägare till fil vid avslut
-        fileHandler.saveOwners(ownerManager.getAllOwners());
+        fileHandler.saveOwners(ownerManager.getAllOwners()); // Spara ägare och incheckade djur
         System.out.println("Avslutar programmet. Tack för att du använde Djurdagis!");
     }
 
