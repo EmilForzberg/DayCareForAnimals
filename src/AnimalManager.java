@@ -51,7 +51,6 @@ public class AnimalManager {
     }
 
     public void listAnimals(List<Owner> owners) {
-        System.out.println("\nVisa Djur");
         for (Owner owner : owners) {
             for (Animal animal : owner.getAnimals()) {
                 String animalType = animal.getClass().getSimpleName(); // VILKEN TYP AV DJUR
