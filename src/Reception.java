@@ -1,14 +1,18 @@
 import java.util.Scanner;
 
 public class Reception {
+    private static boolean returnToMenu = false; // Flagga för att återgå till huvudmenyn
     private OwnerManager ownerManager = new OwnerManager(); // Hanterar ägare
     private AnimalManager animalManager = new AnimalManager(); // Hanterar djur
-    private Scanner scanner = new Scanner(System.in);
-    private static boolean returnToMenu = false; // Flagga för att gå tillbaka till huvudmenyn
+    private FileHandler fileHandler = new FileHandler(); // Hanterar filhantering
+    private Scanner scanner = new Scanner(System.in); // Scanner
 
     public void start() {
+        // Ladda ägare från fil vid programstart
+        ownerManager.setOwners(fileHandler.loadOwners());
+
         while (true) {
-            returnToMenu = false; // Återställ flaggan
+            returnToMenu = false;
             displayMenu();
             String choice = scanner.nextLine().trim().toLowerCase();
 
@@ -35,7 +39,7 @@ public class Reception {
     }
 
     private void displayMenu() {
-        System.out.println("\n--- Välkommen till Djurdagis ---");
+        System.out.println("\nVälkommen till Djurdagiset!");
         System.out.println("1. Lämna djur");
         System.out.println("2. Hämta djur");
         System.out.println("3. Visa djur");
@@ -47,14 +51,14 @@ public class Reception {
     private void checkIn() {
         System.out.print("Ange ägarens telefonnummer (eller skriv MENY för att återgå): ");
         String phone = getInput();
-        if (returnToMenu) return; // Om användaren skrev "MENY", återgå till huvudmenyn
+        if (returnToMenu) return;
 
         Owner owner = ownerManager.findOwner(phone);
         if (owner == null) {
-            System.out.println("Ägare hittades inte. Vill du registrera en ny ägare? (ja/nej)");
+            System.out.println("Ägare hittades inte. Vill du registrera en ny ägare? (Ja/Nej)");
             String response = getInput();
             if (returnToMenu) return;
-            if (response.equalsIgnoreCase("ja")) {
+            if (response.equalsIgnoreCase("JA")) {
                 registerOwner();
             }
         } else {
@@ -101,17 +105,15 @@ public class Reception {
     }
 
     private void exitProgram() {
+        // Spara ägare till fil vid avslut
+        fileHandler.saveOwners(ownerManager.getAllOwners());
         System.out.println("Avslutar programmet. Tack för att du använde Djurdagis!");
     }
 
-    /**
-     * Läser användarens input och kontrollerar om det är "MENY".
-     * @return Strängen användaren skrev in.
-     */
     private String getInput() {
         String input = scanner.nextLine().trim();
         if (input.equalsIgnoreCase("MENY")) {
-            returnToMenu = true; // Sätt flaggan om användaren vill tillbaka till huvudmenyn
+            returnToMenu = true;
         }
         return input;
     }

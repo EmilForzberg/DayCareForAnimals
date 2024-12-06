@@ -1,6 +1,7 @@
+
 public class Dog extends Animal {
-    public Dog(String name, int age, String food, String medication) {
-        super(name, age, food, medication);
+    public Dog(String name, String food, String medication) {
+        super(name, food, medication);
     }
 
     @Override

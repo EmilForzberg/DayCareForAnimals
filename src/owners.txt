@@ -1,0 +1,6 @@
+Emil Forsberg;0762093456
+Dog;Zelda;Ris;Ingen Medicin
+
+Majken Alpsten;0765555555
+Cat;Stella;Ris;Ingen
+

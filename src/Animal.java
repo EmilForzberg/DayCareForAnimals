@@ -1,12 +1,11 @@
+
 public abstract class Animal {
     private String name;
-    private int age;
     private String food;
     private String medication;
 
-    public Animal(String name, int age, String food, String medication) {
+    public Animal(String name, String food, String medication) {
         this.name = name;
-        this.age = age;
         this.food = food;
         this.medication = medication;
     }
@@ -15,10 +14,17 @@ public abstract class Animal {
         return name;
     }
 
+    public String getFood() {
+        return food;
+    }
+
+    public String getMedication() {
+        return medication;
+    }
+
     public abstract void makeSound();
 
     public String getInfo() {
-        return "Namn: " + name + ", Ålder: " + age + ", Mat: " + food + ", Medicin: " + medication;
+        return "Namn: " + name + ", Ålder: " + ", Mat: " + food + ", Medicin: " + medication;
     }
 }
-

@@ -17,7 +17,12 @@ public class OwnerManager {
         return null;
     }
 
+    // Returnerar en kopia av listan
     public List<Owner> getAllOwners() {
-        return new ArrayList<>(owners); // Returnerar en kopia av listan
+        return new ArrayList<>(owners);
+    }
+
+    public void setOwners(List<Owner> owners) {
+        this.owners = owners;
     }
 }

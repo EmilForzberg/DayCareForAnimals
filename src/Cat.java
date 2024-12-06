@@ -1,6 +1,7 @@
+
 public class Cat extends Animal {
-    public Cat(String name, int age, String food, String medication) {
-        super(name, age, food, medication);
+    public Cat(String name, String food, String medication) {
+        super(name, food, medication);
     }
 
     @Override

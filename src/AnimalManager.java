@@ -11,9 +11,9 @@ public class AnimalManager {
         if (animal != null) {
             System.out.println(name + " är nu incheckad.");
         } else {
-            System.out.println("Djuret hittades inte. Vill du registrera det? (ja/nej)");
+            System.out.println("Djuret hittades inte. Vill du registrera det? (Ja/Nej)");
             String response = scanner.nextLine();
-            if (response.equalsIgnoreCase("ja")) {
+            if (response.equalsIgnoreCase("JA")) {
                 addAnimal(owner);
             }
         }
@@ -32,7 +32,7 @@ public class AnimalManager {
     }
 
     public void listAnimals(List<Owner> owners) {
-        System.out.println("\n--- Visa Djur ---");
+        System.out.println("\nVisa Djur");
         for (Owner owner : owners) {
             for (Animal animal : owner.getAnimals()) {
                 System.out.println("Ägare: " + owner.getName() + ", Djur: " + animal.getInfo());
@@ -55,13 +55,13 @@ public class AnimalManager {
         Animal animal;
         switch (type) {
             case "hund":
-                animal = new Dog(name, age, food, medication);
+                animal = new Dog(name, food, medication);
                 break;
             case "katt":
-                animal = new Cat(name, age, food, medication);
+                animal = new Cat(name, food, medication);
                 break;
             case "fågel":
-                animal = new Bird(name, age, food, medication);
+                animal = new Bird(name, food, medication);
                 break;
             default:
                 System.out.println("Ogiltig djurtyp. Djuret registrerades inte.");
