@@ -2,23 +2,23 @@ Emil Forsberg;0762093456
 Dog;Zelda;Ris;Ingen
 
 Majken Alpsten;0705558888
-Dog;Texas;Hundfoder;Ingen
+Dog;Mario;Hundfoder;Ingen
 
 Agens Alpsten;0708885555
-Dog;Rex;Hundfoder;Ingen
+Dog;Luigi;Hundfoder;Ingen
 
 Matilda.;0761234567
-Dog;Ronja;Mycket hundfoder;Ingen
+Dog;Peach;Mycket hundfoder;Ingen
 
 Carolina;07012341234
-Cat;Stella;Kattfoder;Ingen
+Cat;Link;Kattfoder;Ingen
 
 Danny;07212341234
-Bird;Birdy;Solrosfrön;Ingen
+Bird;Birdo;Solrosfrön;Ingen
 
 Tilde;07312341234
-Bird;Madonna;Ärtor;Ingen
+Bird;Bowser;Ärtor;Ingen
 
 Robin; 07612341234
-Cat;Prince;Whiskas;Ingen
+Cat;Toad;Whiskas;Ingen
 
