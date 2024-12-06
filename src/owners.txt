@@ -1,5 +1,5 @@
 Emil Forsberg;0762093456
 Dog;Zelda;Ris;Ingen
 Cat;Stella;Frukt;Ingen
-Dog;Rex;ris;Ingen
+Dog;Rex;Ris;Ingen
 
