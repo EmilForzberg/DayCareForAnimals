@@ -3,6 +3,7 @@ public abstract class Animal implements IAnimal {
     private String name;
     private String food;
     private String medication;
+    private boolean checkedIn = false;
 
     public Animal(String name, String food, String medication) {
         this.name = name;
@@ -20,6 +21,14 @@ public abstract class Animal implements IAnimal {
 
     public String getMedication() {
         return medication;
+    }
+
+    public boolean isCheckedIn() {
+        return checkedIn;
+    }
+
+    public void setCheckedIn(boolean checkedIn) {
+        this.checkedIn = checkedIn;
     }
 
     public abstract void makeSound();

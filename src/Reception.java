@@ -5,7 +5,7 @@ import java.util.Set;
 public class Reception {
     private static boolean returnToMenu = false; // Flagga för att återgå till huvudmenyn
     private OwnerManager ownerManager = new OwnerManager(); // Hanterar ägare
-    private AnimalManager animalManager = new AnimalManager(); // Hanterar djur
+    private AnimalManager animalManager = new AnimalManager(ownerManager); // Hanterar djur
     private FileHandler fileHandler = new FileHandler(); // Hanterar filhantering
     private Scanner scanner = new Scanner(System.in); // Scanner
 

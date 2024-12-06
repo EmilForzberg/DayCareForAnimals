@@ -3,13 +3,26 @@ import java.util.Scanner;
 
 public class AnimalManager {
     private Scanner scanner = new Scanner(System.in);
+    private FileHandler fileHandler = new FileHandler();
+    private OwnerManager ownerManager;
+
+    public AnimalManager(OwnerManager ownerManager) {
+        this.ownerManager = ownerManager;
+    }
 
     public void checkInAnimal(Owner owner) {
         System.out.print("Ange djurets namn: ");
         String name = scanner.nextLine();
         Animal animal = owner.getAnimalByName(name);
+
         if (animal != null) {
-            System.out.println(name + " är nu incheckad.");
+            if (animal.isCheckedIn()) {
+                System.out.println("Djuret " + name + " är redan incheckad.");
+            } else {
+                animal.setCheckedIn(true);
+                System.out.println(name + " har checkats in.");
+                fileHandler.saveOwners(ownerManager.getAllOwners());
+            }
         } else {
             System.out.println("Djuret hittades inte. Vill du registrera det? (Ja/Nej)");
             String response = scanner.nextLine();
@@ -24,32 +37,37 @@ public class AnimalManager {
         String name = scanner.nextLine();
         Animal animal = owner.getAnimalByName(name);
         if (animal != null) {
-            System.out.println(name + " har hämtats. Läte: ");
-            animal.makeSound();
+            if (!animal.isCheckedIn()) {
+                System.out.println("Djuret " + name + " är inte incheckat.");
+            } else {
+                animal.setCheckedIn(false);
+                System.out.println(name + " har hämtats. Läte:");
+                animal.makeSound();
+                fileHandler.saveOwners(ownerManager.getAllOwners());
+            }
         } else {
-            System.out.println("Djuret hittades inte i systemet.");
+            System.out.println("Djuret hittades inte.");
         }
     }
 
     public void listAnimals(List<Owner> owners) {
         System.out.println("\nVisa Djur");
-
         for (Owner owner : owners) {
             for (Animal animal : owner.getAnimals()) {
-                String animalType = animal.getClass().getSimpleName(); // Typ av djur
+                String animalType = animal.getClass().getSimpleName(); // VILKEN TYP AV DJUR
+                String status = animal.isCheckedIn() ? "Incheckad" : "Ej incheckad";
                 System.out.println(
-                        
-                                "Ägare: " + owner.getName() +
-                                ", Tele: " + owner.getPhone() + 
+                        "Ägare: " + owner.getName() +
+                                ", Tele: " + owner.getPhone() +
                                 ", " + animalType +
                                 ", Namn: " + animal.getName() +
                                 ", Mat: " + animal.getFood() +
-                                ", Medicin: " + animal.getMedication()
+                                ", Medicin: " + animal.getMedication() +
+                                ", Status: " + status
                 );
             }
         }
     }
-
 
     public void addAnimal(Owner owner) {
         System.out.print("Ange djurets namn: ");

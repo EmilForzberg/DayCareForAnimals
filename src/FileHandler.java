@@ -20,10 +20,12 @@ public class FileHandler {
         writer.newLine();
 
         for (Animal animal : owner.getAnimals()) {
-            writer.write(animal.getClass().getSimpleName() + ";" +
-                    animal.getName() + ";" +
-                    animal.getFood() + ";" +
-                    animal.getMedication());
+            writer.write(
+                    animal.getClass().getSimpleName() + ";" +
+                        animal.getName() + ";" +
+                        animal.getFood() + ";" +
+                        animal.getMedication() + ";" +
+                        animal.isCheckedIn());
             writer.newLine();
         }
         writer.newLine(); // Tom rad mellan ägare i (owners.txt).
@@ -52,15 +54,16 @@ public class FileHandler {
 
                 String[] parts = line.split(";");
                 if (parts.length == 2) {
-                    System.out.println("Laddar ägare: " + parts[0] + ", telefon: " + parts[1]); // ENDAST FÖR DEBUG
+                    System.out.println("Laddar ägare: " + parts[0] + ", Telefon: " + parts[1]); // ENDAST FÖR DEBUG
                     currentOwner = new Owner(parts[0], parts[1]);
                     owners.add(currentOwner);
-                } else if (parts.length == 4 && currentOwner != null) {
+                } else if (parts.length == 5 && currentOwner != null) {
                     System.out.println("Hittade djur: " + parts[1] + " av typ: " + parts[0]); // ENDAST FÖR DEBUG
                     String type = parts[0];
                     String name = parts[1];
                     String food = parts[2];
                     String medication = parts[3];
+                    boolean isCheckedIn = Boolean.parseBoolean(parts[4]);
 
                     Animal animal;
                     switch (type.toLowerCase()) {
@@ -78,6 +81,7 @@ public class FileHandler {
                             continue;
                     }
                     System.out.println("Laddar djur: " + name + ", typ: " + type); // ENDAST FÖR DEBUG
+                    animal.setCheckedIn(isCheckedIn);
                     currentOwner.addAnimal(animal);
                 }
             }
