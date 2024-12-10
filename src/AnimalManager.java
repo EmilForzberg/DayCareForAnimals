@@ -43,7 +43,7 @@ public class AnimalManager {
                 System.out.println("Djuret " + name + " är inte incheckat.");
             } else {
                 animal.setCheckedIn(false);
-                System.out.println(name + " har hämtats. Läte:");
+                System.out.println(name + " har hämtats.");
                 animal.makeSound();
                 fileHandler.saveOwners(ownerManager.getAllOwners());
             }

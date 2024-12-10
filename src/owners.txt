@@ -2,7 +2,7 @@ Emil Forsberg;0762093456
 Dog;Zelda;Ris;Ingen;false
 
 Majken Alpsten;0705558888
-Dog;Mario;Hundfoder;Ingen;false
+Dog;Mario;Hundfoder;Ingen;true
 
 Agens Alpsten;0708885555
 Dog;Luigi;Hundfoder;Ingen;false
