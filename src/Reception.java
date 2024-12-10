@@ -7,7 +7,6 @@ public class Reception {
     private OwnerManager ownerManager= new OwnerManager(); // Hanterar ägare
     private AnimalManager animalManager= new AnimalManager(ownerManager); // Hanterar djur
     private FileHandler fileHandler = new FileHandler(); // Hanterar filhantering
-    private Scanner scanner = new Scanner(System.in); // Scanner
     private ReceptionView view=new ReceptionView();
     private ReceptionController controller=new ReceptionController(animalManager, ownerManager, view);
 
@@ -47,6 +46,10 @@ public class Reception {
     private void exitProgram() {
         fileHandler.saveOwners(ownerManager.getAllOwners()); // Spara ägare och incheckade djur
         view.displayMessage ("Avslutar programmet. Tack för att du använde Djurdagis!");
+    }
+    public static void main(String[] args) {
+        Reception reception = new Reception();
+        reception.start();
     }
 
 
