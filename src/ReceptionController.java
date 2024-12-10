@@ -13,10 +13,13 @@ public class ReceptionController {
         this.fileHandler =filhandler;
         this.view = view;
     }
+
     public ReceptionController(){}
+
     public void start() {
         ownerManager.setOwners(fileHandler.loadOwners()); // Ladda ägare och incheckade djur
 
+        boolean running = true;
         while (true) {
             returnToMenu = false;
             view.displayMenu();
@@ -39,17 +42,40 @@ public class ReceptionController {
                     getInfoOnAnimal();
                     break;
                 case "6":
-                    exitProgram();
-                    return;
+                    // Kollar om det går att stänga!
+                    if (allAnimalsCheckedOut()) {
+                        exitProgram();
+                        running = false;
+                    }
+                    break;
                 default:
                     System.out.println("Ogiltigt val. Försök igen.");
             }
         }
     }
 
+    private boolean allAnimalsCheckedOut() {
+        for (Owner owner : ownerManager.getAllOwners()) {
+            for (Animal animal : owner.getAnimals()) {
+                if (animal.isCheckedIn()) {
+                    view.displayMessage("Djuret " + animal.getName() + " är fortfarande incheckat.");
+                    return false; // Djur är fortfarande incheckat!
+                }
+            }
+        }
+        return true;
+    }
+
+
     private void exitProgram() {
-        fileHandler.saveOwners(ownerManager.getAllOwners()); // Spara ägare och incheckade djur
-        view.displayMessage ("Avslutar programmet. Tack för att du använde Djurdagis!");
+        if (!allAnimalsCheckedOut()) {
+            view.displayMessage("Det går inte att stänga programmet. Alla djur måste vara utcheckade!");
+            return;
+        }
+
+        fileHandler.saveOwners(ownerManager.getAllOwners());
+        view.displayMessage("Avslutar programmet. Tack för att du använde Djurdagiset!");
+        System.exit(0);
     }
 
     public void checkIn() {
