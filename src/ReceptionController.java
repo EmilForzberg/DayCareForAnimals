@@ -55,15 +55,22 @@ public class ReceptionController {
     }
 
     private boolean allAnimalsCheckedOut() {
+        boolean allCheckedOut = true;
+        StringBuilder message = new StringBuilder("Följande djur är fortfarande incheckade: \n");
+
         for (Owner owner : ownerManager.getAllOwners()) {
             for (Animal animal : owner.getAnimals()) {
                 if (animal.isCheckedIn()) {
-                    view.displayMessage("Djuret " + animal.getName() + " är fortfarande incheckat.");
-                    return false; // Djur är fortfarande incheckat!
+                    allCheckedOut = false;
+                    message.append("- ").append(animal.getName()).append(" (Ägare: ").append(owner.getName()).append(")\n");
                 }
             }
         }
-        return true;
+
+        if (!allCheckedOut) {
+            view.displayMessage(message.toString());
+        }
+        return allCheckedOut;
     }
 
 
