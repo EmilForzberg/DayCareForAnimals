@@ -1,16 +1,55 @@
 import java.util.Scanner;
 
 public class ReceptionController {
-    private AnimalManager animalManager;
-    private OwnerManager ownerManager;
-    private ReceptionView view;
+    private OwnerManager ownerManager= new OwnerManager();
+    private AnimalManager animalManager= new AnimalManager(ownerManager);
+    private ReceptionView view= new ReceptionView();
     private static boolean returnToMenu = false;
-    private FileHandler fileHandler;
+    private FileHandler fileHandler= new FileHandler();
 
-    public ReceptionController(AnimalManager animalManager, OwnerManager ownerManager, ReceptionView view) {
+    public ReceptionController(AnimalManager animalManager, OwnerManager ownerManager, ReceptionView view, FileHandler filhandler) {
         this.animalManager = animalManager;
         this.ownerManager = ownerManager;
+        this.fileHandler =filhandler;
         this.view = view;
+    }
+    public ReceptionController(){}
+    public void start() {
+        ownerManager.setOwners(fileHandler.loadOwners()); // Ladda ägare och incheckade djur
+
+        while (true) {
+            returnToMenu = false;
+            view.displayMenu();
+            String choice = view.getInput().toLowerCase();
+
+            switch (choice) {
+                case "1":
+                    checkIn();
+                    break;
+                case "2":
+                    checkOut();
+                    break;
+                case "3":
+                    listAnimals();
+                    break;
+                case "4":
+                    registerOwner();
+                    break;
+                case "5":
+                    getInfoOnAnimal();
+                    break;
+                case "6":
+                    exitProgram();
+                    return;
+                default:
+                    System.out.println("Ogiltigt val. Försök igen.");
+            }
+        }
+    }
+
+    private void exitProgram() {
+        fileHandler.saveOwners(ownerManager.getAllOwners()); // Spara ägare och incheckade djur
+        view.displayMessage ("Avslutar programmet. Tack för att du använde Djurdagis!");
     }
 
     public void checkIn() {
