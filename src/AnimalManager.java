@@ -97,4 +97,16 @@ public class AnimalManager {
         owner.addAnimal(animal);
         System.out.println("Djuret " + name + " har lagts till hos ägaren " + owner.getName() + ".");
     }
+
+    public void listAnimalInfo(Owner owner) {
+        if (owner.getAnimals().isEmpty()) {
+            System.out.println(owner.getName() + " har inga registrerade djur.");
+            return;
+        }
+
+        //System.out.println("Djur hos ägaren " + owner.getName() + ":");
+        for (Animal animal : owner.getAnimals()) {
+            System.out.println(animal.getInfo()); // Använd getInfo() för att hämta djurets information
+        }
+    }
 }
