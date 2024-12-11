@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class OwnerManager {
     private List<Owner> owners = new ArrayList<>();
@@ -18,6 +19,87 @@ public class OwnerManager {
         return null;
     }
 
+    public void changePetOwner(String oldOwnerPhone, FileHandler fileHandler) {
+        Scanner scanner = new Scanner(System.in);
+
+        Owner oldOwner = findOwner(oldOwnerPhone);
+        if (oldOwner == null) {
+            System.out.println("Ingen ägare med detta telefonnummer hittades." + oldOwnerPhone);
+            return;
+        }
+
+        Animal petGettingNewOwner = selectPetFromOwner(oldOwner);
+        if (petGettingNewOwner == null) {
+            System.out.println("Inget giltigt djur valdes.");
+            return;
+        }
+
+        System.out.println("Ange telefonnumret för det nya ägaren: ");
+        String newOwnerPhone = scanner.nextLine();
+
+        Owner newOwner = findOwner(newOwnerPhone);
+        if (newOwner == null) {
+            System.out.println("Ingen ägare hittad med detta telefonnummer: " + newOwnerPhone);
+            System.out.println("Byter ägare...");
+            if (newOwner == null) {
+                System.out.println("Fel vi byte av ägare.");
+                return;
+            }
+        }
+
+        transferOwnershipForAnimal(oldOwner, newOwner, petGettingNewOwner);
+
+        // UPPDATERAR TEXTFIL!
+        fileHandler.saveOwners(owners);
+
+        System.out.println("Djuret " + petGettingNewOwner.getName() + " har bytt ägare från "
+                        + oldOwner.getName() + "till" + newOwner.getName() + ".");
+    }
+
+    public Animal selectPetFromOwner(Owner owner) {
+        Scanner scanner = new Scanner(System.in);
+
+        // OM ÄGARE HAR FLERA DJUR
+        if (owner.getAnimals().size() == 1) {
+            return owner.getAnimals().get(0);
+        }
+
+        System.out.println("Vilket husdjur ska byta ägare? ");
+        while (true) {
+            for (Animal animal : owner.getAnimals()) {
+                System.out.println("– " + animal.getName() + ".");
+            }
+
+            String selectedPet = scanner.nextLine();
+            for (Animal animal : owner.getAnimals()) {
+                if (animal.getName().equalsIgnoreCase(selectedPet)) {
+                    return animal;
+                }
+            }
+            System.out.println("Djuret finns inte. Försök igen.");
+        }
+    }
+
+    //
+    public Owner createNewOwner(String phone) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Ange namnet på den nya ägaren: ");
+        String name = scanner.nextLine();
+
+        Owner newOwner = new Owner(name, phone);
+        owners.add(newOwner);
+        return newOwner;
+    }
+
+    public void transferOwnershipForAnimal(Owner oldOwner, Owner newOwner, Animal petGettingNewOwner) {
+        oldOwner.getAnimals().remove(petGettingNewOwner);
+        newOwner.getAnimals().add(petGettingNewOwner);
+
+        if (oldOwner.getAnimals().isEmpty()) {
+            owners.remove(oldOwner);
+        }
+    }
 
     // Returnerar en kopia av listan
     public List<Owner> getAllOwners() {

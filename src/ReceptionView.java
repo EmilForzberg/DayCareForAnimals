@@ -9,8 +9,9 @@ public class ReceptionView {
         displayMessage ("2. Hämta Djur");
         displayMessage ("3. Visa Ägare & Djur");
         displayMessage ("4. Registrera Ny Ägare");
-        displayMessage ("5. Information Om Djur");
-        displayMessage ("6. Avsluta" );
+        displayMessage ("5. Byt Ägare");
+        displayMessage ("6. Information Om Djur");
+        displayMessage ("7. Avsluta" );
         System.out.print("Välj Ett Alternativ: ");
     }
     public String getInput() {

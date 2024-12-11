@@ -37,9 +37,14 @@ public class ReceptionController {
                     registerOwner();
                     break;
                 case "5":
-                    getInfoOfAnimal();
+                    view.displayMessage("Ange telefonnummer för gamla ägaren: ");
+                    String oldOwnerPhone = view.getInput();
+                    ownerManager.changePetOwner(oldOwnerPhone, fileHandler);
                     break;
                 case "6":
+                    getInfoOfAnimal();
+                    break;
+                case "7":
                     String checkedInAnimals = getAllCheckedInAnimals();
                     if (checkedInAnimals != null) {
 
