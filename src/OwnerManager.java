@@ -53,15 +53,16 @@ public class OwnerManager {
         fileHandler.saveOwners(owners);
 
         System.out.println("Djuret " + petGettingNewOwner.getName() + " har bytt ägare från "
-                        + oldOwner.getName() + "till" + newOwner.getName() + ".");
+                        + oldOwner.getName() + " till " + newOwner.getName() + ".");
     }
 
     public Animal selectPetFromOwner(Owner owner) {
         Scanner scanner = new Scanner(System.in);
 
         // OM ÄGARE HAR FLERA DJUR
-        if (owner.getAnimals().size() == 1) {
-            return owner.getAnimals().get(0);
+        if (owner.getAnimals().isEmpty()) {
+            System.out.println(owner.getName() + " har inga husdjur som kan bytas.");
+            return null;
         }
 
         System.out.println("Vilket husdjur ska byta ägare? ");
@@ -70,7 +71,7 @@ public class OwnerManager {
                 System.out.println("– " + animal.getName() + ".");
             }
 
-            String selectedPet = scanner.nextLine();
+            String selectedPet = scanner.nextLine().trim();
             for (Animal animal : owner.getAnimals()) {
                 if (animal.getName().equalsIgnoreCase(selectedPet)) {
                     return animal;
@@ -80,25 +81,9 @@ public class OwnerManager {
         }
     }
 
-    //
-    public Owner createNewOwner(String phone) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Ange namnet på den nya ägaren: ");
-        String name = scanner.nextLine();
-
-        Owner newOwner = new Owner(name, phone);
-        owners.add(newOwner);
-        return newOwner;
-    }
-
     public void transferOwnershipForAnimal(Owner oldOwner, Owner newOwner, Animal petGettingNewOwner) {
         oldOwner.getAnimals().remove(petGettingNewOwner);
         newOwner.getAnimals().add(petGettingNewOwner);
-
-        if (oldOwner.getAnimals().isEmpty()) {
-            owners.remove(oldOwner);
-        }
     }
 
     // Returnerar en kopia av listan

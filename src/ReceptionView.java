@@ -4,7 +4,7 @@ public class ReceptionView {
     private Scanner scanner = new Scanner(System.in);
 
     public void displayMenu() {
-        displayMessage ("\nVälkommen till Djurdagiset!");
+        displayMessage ("\nVälkommen till Djurdagiset!\n");
         displayMessage ("1. Lämna Djur");
         displayMessage ("2. Hämta Djur");
         displayMessage ("3. Visa Ägare & Djur");
@@ -12,7 +12,7 @@ public class ReceptionView {
         displayMessage ("5. Byt Ägare");
         displayMessage ("6. Information Om Djur");
         displayMessage ("7. Avsluta" );
-        System.out.print("Välj Ett Alternativ: ");
+        System.out.print("\nVälj Ett Alternativ: ");
     }
     public String getInput() {
         return scanner.nextLine().trim();
