@@ -7,7 +7,7 @@ public class ReceptionView {
         displayMessage ("\nVälkommen till Djurdagiset!");
         displayMessage ("1. Lämna Djur");
         displayMessage ("2. Hämta Djur");
-        displayMessage ("3. Visa Djur");
+        displayMessage ("3. Visa Ägare & Djur");
         displayMessage ("4. Registrera Ny Ägare");
         displayMessage ("5. Information Om Djur");
         displayMessage ("6. Avsluta" );

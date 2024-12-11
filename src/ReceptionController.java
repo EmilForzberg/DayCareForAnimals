@@ -1,11 +1,11 @@
 import java.util.Scanner;
 
 public class ReceptionController {
-    private OwnerManager ownerManager= new OwnerManager();
-    private AnimalManager animalManager= new AnimalManager(ownerManager);
-    private ReceptionView view= new ReceptionView();
+    private OwnerManager ownerManager = new OwnerManager();
+    private AnimalManager animalManager = new AnimalManager(ownerManager);
+    private ReceptionView view = new ReceptionView();
     private static boolean returnToMenu = false;
-    private FileHandler fileHandler= new FileHandler();
+    private FileHandler fileHandler = new FileHandler();
 
     public ReceptionController(AnimalManager animalManager, OwnerManager ownerManager, ReceptionView view, FileHandler filhandler) {
         this.animalManager = animalManager;
@@ -71,6 +71,7 @@ public class ReceptionController {
                 }
             }
         }
+
         if (hasCheckedInAnimals) {
             return message.toString();
         } else {
@@ -88,12 +89,12 @@ public class ReceptionController {
         }
 
         fileHandler.saveOwners(ownerManager.getAllOwners());
-        view.displayMessage("Avslutar programmet. Tack för att du använde Djurdagiset!");
+        view.displayMessage("\nAvslutar programmet. Tack för att du använde Djurdagiset!");
         System.exit(0);
     }
 
     public void checkIn() {
-        view.displayMessage("Ange ägarens telefonnummer (eller skriv MENY för att återgå): ");
+        view.displayMessage("\nAnge ägarens telefonnummer (eller skriv MENY för att återgå): ");
         String phone = getInput();
         if (returnToMenu) return;
 
@@ -111,7 +112,7 @@ public class ReceptionController {
     }
 
     public void checkOut() {
-        view.displayMessage("Ange ägarens telefonnummer (eller skriv MENY för att återgå): ");
+        view.displayMessage("\nAnge ägarens telefonnummer (eller skriv MENY för att återgå): ");
         String phone = getInput();
         if (returnToMenu) return;
 
@@ -124,8 +125,8 @@ public class ReceptionController {
     }
 
     public void getInfoOnAnimal(){
-        view.displayMessage("Ange ägarens telefonnummer");
-        String phone= getInput();
+        view.displayMessage("\nAnge ägarens telefonnummer (eller skriv MENY för att återgå): ");
+        String phone = getInput();
 
         Owner owner = ownerManager.findOwner(phone);
         if (owner == null) {
@@ -133,16 +134,15 @@ public class ReceptionController {
         } else {
             animalManager.listAnimalInfo(owner);
         }
-
     }
 
     public void listAnimals() {
-        view.displayMessage ("\nVisa Djur"); // Visar alla ägare och deras djur
+        view.displayMessage ("\nÄgare & Djur"); // Visar alla ägare och deras djur
         animalManager.listAnimals(ownerManager.getAllOwners());
     }
 
     public void registerOwner() {
-        view.displayMessage("Ange ägarens telefonnummer (eller skriv MENY för att återgå): ");
+        view.displayMessage("\nAnge ägarens telefonnummer (eller skriv MENY för att återgå): ");
         String phone = getInput();
         if (returnToMenu) return;
 
