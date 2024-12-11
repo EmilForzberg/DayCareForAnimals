@@ -56,7 +56,7 @@ public class ReceptionController {
 
     private boolean allAnimalsCheckedOut() {
         boolean allCheckedOut = true;
-        StringBuilder message = new StringBuilder("Följande djur är fortfarande incheckade: \n");
+        StringBuilder message = new StringBuilder("\nFöljande djur är fortfarande incheckade: \n");
 
         for (Owner owner : ownerManager.getAllOwners()) {
             for (Animal animal : owner.getAnimals()) {

@@ -1,17 +1,17 @@
 import java.util.Scanner;
 
 public class ReceptionView {
-    private Scanner scanner=new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
     public void displayMenu() {
         displayMessage ("\nVälkommen till Djurdagiset!");
-        displayMessage ("1. Lämna djur");
-        displayMessage ("2. Hämta djur");
-        displayMessage ("3. Visa djur");
-        displayMessage ("4. Registrera ny ägare");
-        displayMessage ("5. Information om Djur");
+        displayMessage ("1. Lämna Djur");
+        displayMessage ("2. Hämta Djur");
+        displayMessage ("3. Visa Djur");
+        displayMessage ("4. Registrera Ny Ägare");
+        displayMessage ("5. Information Om Djur");
         displayMessage ("6. Avsluta" );
-        System.out.print("Välj ett alternativ: ");
+        System.out.print("Välj Ett Alternativ: ");
     }
     public String getInput() {
         return scanner.nextLine().trim();
