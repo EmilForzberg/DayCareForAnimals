@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class ReceptionController {
     private OwnerManager ownerManager = new OwnerManager();
     private AnimalManager animalManager = new AnimalManager(ownerManager);
@@ -39,7 +37,7 @@ public class ReceptionController {
                     registerOwner();
                     break;
                 case "5":
-                    getInfoOnAnimal();
+                    getInfoOfAnimal();
                     break;
                 case "6":
                     String checkedInAnimals = getAllCheckedInAnimals();
@@ -124,7 +122,7 @@ public class ReceptionController {
         }
     }
 
-    public void getInfoOnAnimal(){
+    public void getInfoOfAnimal(){
         view.displayMessage("\nAnge ägarens telefonnummer (eller skriv MENY för att återgå): ");
         String phone = getInput();
 

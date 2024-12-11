@@ -1,27 +1,16 @@
 Emil Forsberg;0762093456
 Dog;Zelda;Ris;Ingen;false
+Cat;Mario;Fisk;Ingen;true
 
-Majken Alpsten;0705558888
-Dog;Mario;Hundfoder;Ingen;false
-
-Agens Alpsten;0708885555
-Dog;Luigi;Hundfoder;Ingen;false
-
-Matilda;0761234567
-Dog;Peach;Mycket hundfoder;Ingen;false
-
-Carolina;07012341234
+Carolina Fromm;07012341234
 Cat;Link;Kattfoder;Ingen;false
 
-Danny;07212341234
+Danny Yari;07212341234
 Bird;Birdo;Solrosfrön;Ingen;false
 
-Tilde;07312341234
+Tilde Hv;07312341234
 Bird;Bowser;Ärtor;Ingen;false
 
-Robin;07612341234
+Robin Öqvist;07612341234
 Cat;Toad;Whiskas;Ingen;false
-
-Emil;086231664
-Dog;Bolt;Blixtar;Adrenalinspruta;false
 

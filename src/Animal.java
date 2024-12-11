@@ -34,6 +34,6 @@ public abstract class Animal implements IAnimal {
     public abstract void makeSound();
 
     public String getInfo() {
-        return "Namn: " + name + ", Mat: " + food + ", Medicin: " + medication;
+        return "Namn: " + getName() + " (" + getClass().getSimpleName() + "), Mat: " + getFood() + ", Medicin: " + getMedication();
     }
 }
