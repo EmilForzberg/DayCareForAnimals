@@ -42,8 +42,12 @@ public class ReceptionController {
                     getInfoOnAnimal();
                     break;
                 case "6":
-                    // Kollar om det går att stänga!
-                    if (allAnimalsCheckedOut()) {
+                    String checkedInAnimals = getAllCheckedInAnimals();
+                    if (checkedInAnimals != null) {
+
+                        view.displayMessage(checkedInAnimals);
+                        view.displayMessage("Det går inte att stänga programmet. Alla djur måste vara utcheckade!");
+                    } else {
                         exitProgram();
                         running = false;
                     }
@@ -54,28 +58,31 @@ public class ReceptionController {
         }
     }
 
-    private boolean allAnimalsCheckedOut() {
-        boolean allCheckedOut = true;
-        StringBuilder message = new StringBuilder("\nFöljande djur är fortfarande incheckade: \n");
+    private String getAllCheckedInAnimals() {
+        StringBuilder message = new StringBuilder("\nFöljande djur är fortfarande incheckade:\n");
+        boolean hasCheckedInAnimals = false;
 
         for (Owner owner : ownerManager.getAllOwners()) {
             for (Animal animal : owner.getAnimals()) {
                 if (animal.isCheckedIn()) {
-                    allCheckedOut = false;
-                    message.append("- ").append(animal.getName()).append(" (Ägare: ").append(owner.getName()).append(")\n");
+                    hasCheckedInAnimals = true;
+                    message.append("- ").append(animal.getName())
+                            .append(" (Ägare: ").append(owner.getName()).append(")\n");
                 }
             }
         }
-
-        if (!allCheckedOut) {
-            view.displayMessage(message.toString());
+        if (hasCheckedInAnimals) {
+            return message.toString();
+        } else {
+            return null;
         }
-        return allCheckedOut;
     }
 
-
     private void exitProgram() {
-        if (!allAnimalsCheckedOut()) {
+        String checkedInAnimals = getAllCheckedInAnimals();
+
+        if (checkedInAnimals != null) {
+            view.displayMessage(checkedInAnimals);
             view.displayMessage("Det går inte att stänga programmet. Alla djur måste vara utcheckade!");
             return;
         }
