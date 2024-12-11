@@ -56,7 +56,7 @@ public class ReceptionController {
         }
     }
 
-    private String getAllCheckedInAnimals() {
+    public String getAllCheckedInAnimals() {
         StringBuilder message = new StringBuilder("\nFöljande djur är fortfarande incheckade:\n");
         boolean hasCheckedInAnimals = false;
 
