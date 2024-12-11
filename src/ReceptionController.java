@@ -44,6 +44,10 @@ public class ReceptionController {
                 case "6":
                     getInfoOfAnimal();
                     break;
+                case "6":
+                    changeOfOwnership();
+                    break;
+                case "7":
                 case "7":
                     String checkedInAnimals = getAllCheckedInAnimals();
                     if (checkedInAnimals != null) {
@@ -56,12 +60,12 @@ public class ReceptionController {
                     }
                     break;
                 default:
-                    System.out.println("Ogiltigt val. Försök igen.");
+                    view.displayMessage("Ogiltigt val. Försök igen.");
             }
         }
     }
 
-    private String getAllCheckedInAnimals() {
+    public String getAllCheckedInAnimals() {
         StringBuilder message = new StringBuilder("\nFöljande djur är fortfarande incheckade:\n");
         boolean hasCheckedInAnimals = false;
 
@@ -103,7 +107,7 @@ public class ReceptionController {
 
         Owner owner = ownerManager.findOwner(phone);
         if (owner == null) {
-            System.out.println("Ägare hittades inte. Vill du registrera en ny ägare? (Ja/Nej)");
+            view.displayMessage("Ägare hittades inte. Vill du registrera en ny ägare? (Ja/Nej)");
             String response = getInput();
             if (returnToMenu) return;
             if (response.equalsIgnoreCase("JA")) {
@@ -153,7 +157,7 @@ public class ReceptionController {
         Owner existingOwner = ownerManager.findOwner(phone);
         if (existingOwner != null) {
             view.displayMessage("En ägare finns redan med detta telefonnummer.");
-            System.out.print("Vill du lägga till ett djur till ägaren istället? (Ja/Nej): ");
+            view.displayMessage("Vill du lägga till ett djur till ägaren istället? (Ja/Nej): ");
             String response = getInput();
             if (returnToMenu) return;
 
@@ -168,7 +172,7 @@ public class ReceptionController {
         }
 
         // Om telefonnumret inte finns, fortsätt med att registrera en ny ägare
-        System.out.print("Ange ägarens namn (eller skriv MENY för att återgå): ");
+        view.displayMessage("Ange ägarens namn (eller skriv MENY för att återgå): ");
         String name = getInput();
         if (returnToMenu) return;
 
