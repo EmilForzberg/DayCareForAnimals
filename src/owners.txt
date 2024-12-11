@@ -1,6 +1,6 @@
 Emil Forsberg;0762093456
 Dog;Zelda;Ris;Ingen;false
-Cat;Mario;Fisk;Ingen;true
+Cat;Mario;Fisk;Ingen;false
 
 Carolina Fromm;07012341234
 Cat;Link;Kattfoder;Ingen;false
@@ -13,4 +13,7 @@ Bird;Bowser;Ärtor;Ingen;false
 
 Robin Öqvist;07612341234
 Cat;Toad;Whiskas;Ingen;false
+
+Beck;0700132123
+Dog;Johannes;null;null;false
 
