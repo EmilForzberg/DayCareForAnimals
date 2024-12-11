@@ -10,7 +10,8 @@ public class ReceptionView {
         displayMessage ("3. Visa Ägare & Djur");
         displayMessage ("4. Registrera Ny Ägare");
         displayMessage ("5. Information Om Djur");
-        displayMessage ("6. Avsluta" );
+        displayMessage ("6. Byta ägare" );
+        displayMessage ("7. Avsluta" );
         System.out.print("Välj Ett Alternativ: ");
     }
     public String getInput() {

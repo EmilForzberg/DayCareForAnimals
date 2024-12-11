@@ -40,6 +40,9 @@ public class ReceptionController {
                     getInfoOfAnimal();
                     break;
                 case "6":
+                    changeOfOwnership();
+                    break;
+                case "7":
                     String checkedInAnimals = getAllCheckedInAnimals();
                     if (checkedInAnimals != null) {
 
@@ -90,7 +93,13 @@ public class ReceptionController {
         view.displayMessage("\nAvslutar programmet. Tack för att du använde Djurdagiset!");
         System.exit(0);
     }
+    //-----------------------------
+    public void changeOfOwnership(){
+        view.displayMessage("Vad är tel på gamla ägare: ");
+        ownerManager.changePetOwnership(view.getInput());
 
+    }
+    //-----------------------
     public void checkIn() {
         view.displayMessage("\nAnge ägarens telefonnummer (eller skriv MENY för att återgå): ");
         String phone = getInput();

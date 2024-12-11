@@ -10,6 +10,8 @@ public class Owner {
         this.name = name;
         this.phone = phone;
     }
+    public Owner(){
+    }
 
     public String getName() {
         return name;
@@ -35,4 +37,15 @@ public class Owner {
     public List<Animal> getAnimals() {
         return animals;
     }
+//----------------------------------------------
+    public void removeAnimal(Animal animal){
+        for (var animal1 : animals) {
+            if (animal1.getName().equalsIgnoreCase(animal.getName())){
+                animals.remove(animal);
+            }else System.out.printf("FEL");
+        }
+
+
+    }
+    //------------------------------------------------
 }
