@@ -1,8 +1,7 @@
-
 public abstract class Animal implements IAnimal {
-    private String name;
-    private String food;
-    private String medication;
+    private final String name;
+    private final String food;
+    private final String medication;
     private boolean checkedIn = false;
 
     public Animal(String name, String food, String medication) {

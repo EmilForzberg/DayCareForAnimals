@@ -5,14 +5,7 @@ public class ReceptionController {
     private static boolean returnToMenu = false;
     private FileHandler fileHandler = new FileHandler();
 
-    public ReceptionController(AnimalManager animalManager, OwnerManager ownerManager, ReceptionView view, FileHandler filhandler) {
-        this.animalManager = animalManager;
-        this.ownerManager = ownerManager;
-        this.fileHandler = filhandler;
-        this.view = view;
-    }
-
-    public ReceptionController(){}
+    public ReceptionController() {}
 
     public void start() {
         ownerManager.setOwners(fileHandler.loadOwners()); // Ladda ägare och incheckade djur
@@ -119,26 +112,26 @@ public class ReceptionController {
 
         Owner owner = ownerManager.findOwner(phone);
         if (owner == null) {
-            view.displayMessage ("Ägare hittades inte.");
+            view.displayMessage("Ägare hittades inte.");
         } else {
             animalManager.checkOutAnimal(owner);
         }
     }
 
-    public void getInfoOfAnimal(){
+    public void getInfoOfAnimal() {
         view.displayMessage("\nAnge ägarens telefonnummer (eller skriv MENY för att återgå): ");
         String phone = getInput();
 
         Owner owner = ownerManager.findOwner(phone);
         if (owner == null) {
-            view.displayMessage ("Ägare hittades inte.");
+            view.displayMessage("Ägare hittades inte.");
         } else {
             animalManager.listAnimalInfo(owner);
         }
     }
 
     public void listAnimals() {
-        view.displayMessage ("\nÄgare & Djur"); // Visar alla ägare och deras djur
+        view.displayMessage("\nÄgare & Djur"); // Visar alla ägare och deras djur
         animalManager.listAnimals(ownerManager.getAllOwners());
     }
 
@@ -158,9 +151,9 @@ public class ReceptionController {
             if (response.equalsIgnoreCase("JA")) {
                 animalManager.addAnimal(existingOwner); // Lägg till nytt djur
                 fileHandler.saveOwners(ownerManager.getAllOwners()); // Uppdaterar filen
-                view.displayMessage ("Djuret har registrerats till ägaren " + existingOwner.getName() + ".");
+                view.displayMessage("Djuret har registrerats till ägaren " + existingOwner.getName() + ".");
             } else {
-                view.displayMessage ("Återgår till huvudmenyn.");
+                view.displayMessage("Återgår till huvudmenyn.");
             }
             return;
         }
@@ -174,7 +167,7 @@ public class ReceptionController {
         ownerManager.addOwner(newOwner);
         fileHandler.appendOwnerToFile(newOwner); // Spara den nya ägaren direkt i filen
 
-        view.displayMessage ("Ny ägare registrerad. Vill du lägga till ett djur? (Ja/Nej): ");
+        view.displayMessage("Ny ägare registrerad. Vill du lägga till ett djur? (Ja/Nej): ");
         String response = getInput();
         if (returnToMenu) return;
 

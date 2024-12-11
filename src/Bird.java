@@ -1,4 +1,3 @@
-
 public class Bird extends Animal {
     public Bird(String name, String food, String medication) {
         super(name, food, medication);

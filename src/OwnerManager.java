@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 public class OwnerManager {
     private List<Owner> owners = new ArrayList<>();
+
     public void addOwner(Owner owner) {
         owners.add(owner);
     }
-    Scanner sc=new Scanner(System.in);
 
     public Owner findOwner(String phone) {
         for (Owner owner : owners) {
@@ -53,7 +53,7 @@ public class OwnerManager {
         fileHandler.saveOwners(owners);
 
         System.out.println("Djuret " + petGettingNewOwner.getName() + " har bytt ägare från "
-                        + oldOwner.getName() + " till " + newOwner.getName() + ".");
+                + oldOwner.getName() + " till " + newOwner.getName() + ".");
     }
 
     public Animal selectPetFromOwner(Owner owner) {

@@ -22,10 +22,10 @@ public class FileHandler {
         for (Animal animal : owner.getAnimals()) {
             writer.write(
                     animal.getClass().getSimpleName() + ";" +
-                        animal.getName() + ";" +
-                        animal.getFood() + ";" +
-                        animal.getMedication() + ";" +
-                        animal.isCheckedIn());
+                            animal.getName() + ";" +
+                            animal.getFood() + ";" +
+                            animal.getMedication() + ";" +
+                            animal.isCheckedIn());
             writer.newLine();
         }
         writer.newLine(); // Tom rad mellan ägare i (owners.txt).

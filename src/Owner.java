@@ -4,13 +4,14 @@ import java.util.List;
 public class Owner {
     private String name;
     private String phone;
-    private List<Animal> animals = new ArrayList<>();
+    private final List<Animal> animals = new ArrayList<>();
 
     public Owner(String name, String phone) {
         this.name = name;
         this.phone = phone;
     }
-    public Owner(){
+
+    public Owner() {
     }
 
     public String getName() {
@@ -37,12 +38,13 @@ public class Owner {
     public List<Animal> getAnimals() {
         return animals;
     }
-//----------------------------------------------
-    public void removeAnimal(Animal animal){
+
+    //----------------------------------------------
+    public void removeAnimal(Animal animal) {
         for (var animal1 : animals) {
-            if (animal1.getName().equalsIgnoreCase(animal.getName())){
+            if (animal1.getName().equalsIgnoreCase(animal.getName())) {
                 animals.remove(animal);
-            }else System.out.printf("FEL");
+            } else System.out.print("FEL");
         }
 
 

@@ -3,9 +3,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class AnimalManager {
-    private Scanner scanner = new Scanner(System.in);
-    private FileHandler fileHandler = new FileHandler();
-    private OwnerManager ownerManager;
+    private final Scanner scanner = new Scanner(System.in);
+    private final FileHandler fileHandler = new FileHandler();
+    private final OwnerManager ownerManager;
 
     public AnimalManager(OwnerManager ownerManager) {
         this.ownerManager = ownerManager;
