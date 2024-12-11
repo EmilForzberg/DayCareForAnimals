@@ -8,7 +8,7 @@ public class ReceptionController {
     public ReceptionController(AnimalManager animalManager, OwnerManager ownerManager, ReceptionView view, FileHandler filhandler) {
         this.animalManager = animalManager;
         this.ownerManager = ownerManager;
-        this.fileHandler =filhandler;
+        this.fileHandler = filhandler;
         this.view = view;
     }
 
