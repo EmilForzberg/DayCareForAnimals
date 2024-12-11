@@ -42,7 +42,7 @@ public class FileHandler {
     public List<Owner> loadOwners() {
         List<Owner> owners = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
-            System.out.println("Läser in ägare från fil: " + FILE_NAME); // ENDAST FÖR DEBUG
+            // System.out.println("Läser in ägare från fil: " + FILE_NAME); // ENDAST FÖR DEBUG
             String line;
             Owner currentOwner = null;
 
@@ -54,11 +54,11 @@ public class FileHandler {
 
                 String[] parts = line.split(";");
                 if (parts.length == 2) {
-                    System.out.println("Laddar ägare: " + parts[0] + ", Telefon: " + parts[1]); // ENDAST FÖR DEBUG
+                    // System.out.println("Laddar ägare: " + parts[0] + ", Telefon: " + parts[1]); // ENDAST FÖR DEBUG
                     currentOwner = new Owner(parts[0], parts[1]);
                     owners.add(currentOwner);
                 } else if (parts.length == 5 && currentOwner != null) {
-                    System.out.println("Hittade djur: " + parts[1] + " av typ: " + parts[0]); // ENDAST FÖR DEBUG
+                    // System.out.println("Hittade djur: " + parts[1] + " av typ: " + parts[0]); // ENDAST FÖR DEBUG
                     String type = parts[0];
                     String name = parts[1];
                     String food = parts[2];
@@ -80,7 +80,7 @@ public class FileHandler {
                             System.out.println("Okänd djurtyp: " + type);
                             continue;
                     }
-                    System.out.println("Laddar djur: " + name + ", typ: " + type); // ENDAST FÖR DEBUG
+                    // System.out.println("Laddar djur: " + name + ", typ: " + type); // ENDAST FÖR DEBUG
                     animal.setCheckedIn(isCheckedIn);
                     currentOwner.addAnimal(animal);
                 }
