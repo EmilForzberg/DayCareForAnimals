@@ -37,17 +37,11 @@ public class ReceptionController {
                     registerOwner();
                     break;
                 case "5":
-                    view.displayMessage("Ange telefonnummer för gamla ägaren: ");
-                    String oldOwnerPhone = view.getInput();
-                    ownerManager.changePetOwner(oldOwnerPhone, fileHandler);
+                    changeOwner();
                     break;
                 case "6":
                     getInfoOfAnimal();
                     break;
-                case "6":
-                    changeOfOwnership();
-                    break;
-                case "7":
                 case "7":
                     String checkedInAnimals = getAllCheckedInAnimals();
                     if (checkedInAnimals != null) {
@@ -188,6 +182,12 @@ public class ReceptionController {
             animalManager.addAnimal(newOwner);
             fileHandler.saveOwners(ownerManager.getAllOwners()); // Uppdaterar filen
         }
+    }
+
+    public void changeOwner() {
+        view.displayMessage("Ange telefonnummer för gamla ägaren: ");
+        String oldOwnerPhone = view.getInput();
+        ownerManager.changePetOwner(oldOwnerPhone, fileHandler);
     }
 
     public String getInput() {
