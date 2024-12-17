@@ -39,15 +39,4 @@ public class Owner {
         return animals;
     }
 
-    //----------------------------------------------
-    public void removeAnimal(Animal animal) {
-        for (var animal1 : animals) {
-            if (animal1.getName().equalsIgnoreCase(animal.getName())) {
-                animals.remove(animal);
-            } else System.out.print("FEL");
-        }
-
-
-    }
-    //------------------------------------------------
 }
